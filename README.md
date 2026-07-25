@@ -1,17 +1,36 @@
-# 수령길-컴맹 v0.2.3
+# 수령길-컴맹 v0.3.0
 
-변경사항:
-- 프로그램 이름을 `수령길-컴맹`으로 변경
-- `뇌지도`를 `생각 연결`로 변경
-- 생각 연결 화면을 열 때 노드 전체를 자동으로 화면 정중앙에 맞춤
-- 긴 메모 때문에 전체 페이지가 계속 길어지지 않도록 상세 기록 영역만 내부 스크롤
-- 새 메모/이어쓰기/수정에 굵게(B), 밑줄(U), 글자 크기(작게/보통/크게) 추가
-- 기존 v0.2.x localStorage 데이터를 그대로 읽어 기존 메모 유지
+## GitHub PC ↔ 모바일 동기화
+
+메모 데이터는 전용 **비공개 GitHub 저장소** `suryunggil-commaeng-data`의 `data/state.json`에 저장한다.
+
+- PC/모바일에서 같은 GitHub 계정·저장소·Fine-grained PAT를 한 번씩 설정
+- 메모 변경 후 약 2초 뒤 자동 동기화
+- 30초마다 다른 기기의 변경 확인
+- 메모/이어쓰기 항목은 ID 기반 병합
+- 삭제 tombstone 동기화
+- 토큰은 GitHub 데이터 파일에 저장하지 않고 각 기기 브라우저 localStorage에만 저장
+
+## 지인 계정 세팅
+
+지인이 로그인한 환경에서:
+
+```bash
+bash setup_friend_github.sh
+```
+
+그 다음 GitHub 웹에서 Fine-grained PAT 생성:
+
+- Repository access: Only select repositories
+- `suryunggil-commaeng-data` 선택
+- Repository permissions → Contents → Read and write
+
+GitHub 비밀번호를 받을 필요는 없다.
 
 ## 배포
+
 ```bash
 cd ~/Downloads && rm -rf SURYUNGGIL_COMMAENG && unzip -qo NEURON_MEMO_LATEST.zip && cd SURYUNGGIL_COMMAENG && bash publish.sh
 ```
 
-배포 후 우선 확인:
-`https://gt10300407.github.io/neuron-memo/v023.html`
+확인용: `https://<github-id>.github.io/neuron-memo/v030.html`
