@@ -22,4 +22,4 @@ git add -A
 if git diff --cached --quiet; then echo "변경사항 없음."; else git commit -m "$MSG" --quiet; git push -u origin main --quiet; echo "커밋/푸시 완료."; fi
 if gh api "repos/${REPO}/pages" >/dev/null 2>&1; then gh api --method PUT "repos/${REPO}/pages" -f build_type=workflow >/dev/null 2>&1 || true; else gh api --method POST "repos/${REPO}/pages" -f build_type=workflow >/dev/null 2>&1 || true; fi
 gh workflow run pages.yml --repo "$REPO" >/dev/null 2>&1 || true
-echo; echo "새 버전 확인: https://${OWNER}.github.io/${REPO_NAME}/v031.html"; echo "기본 주소: https://${OWNER}.github.io/${REPO_NAME}/"; echo "처음에는 1~3분 정도 걸릴 수 있어."
+echo; echo "새 버전 확인: https://${OWNER}.github.io/${REPO_NAME}/v032.html"; echo "기본 주소: https://${OWNER}.github.io/${REPO_NAME}/"; echo "처음에는 1~3분 정도 걸릴 수 있어."
