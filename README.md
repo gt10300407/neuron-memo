@@ -1,27 +1,28 @@
-# 수령길-컴맹 v0.3.2
+# 수령길-컴맹 v0.3.3
 
-## 메모 입력 UX
-- `뭐든 적어...` 영역 클릭 → 큰 메모장 창
-- `새 메모` 클릭 → 큰 메모장 창
-- `이어서 기록하기` 영역 클릭 → 큰 메모장 창
-- 기존 기록 `수정` → 같은 크기의 큰 수정 창
-- 굵게 / 밑줄 / 글자 크기 지원
-- Ctrl/Cmd + Enter 저장
+## 반응형 범위
 
-## 생각 연결 직접 연결
-### 생각 연결 화면
-1. `직접 연결` 클릭
-2. 첫 번째 메모 노드 클릭
-3. 두 번째 메모 노드 클릭
-4. 굵은 직접 연결선 생성
+- PC: 1181px 이상
+- 태블릿: 761px ~ 1180px
+- 모바일: 760px 이하
+- 좁은 모바일: 420px 이하 추가 보정
 
-### 메모 화면
-`메모 연결` → 연결할 다른 메모 체크 → `연결 저장`
+## 이번 수정
+
+- 모바일에서 페이지 전체가 좌우/상하로 흔들리는 현상 억제
+- 외부 body 스크롤/overscroll 차단
+- 필요한 목록과 메모 영역만 내부 스크롤
+- iOS Safari 주소창/키보드에 따른 viewport 높이 변화 대응
+- 생각 연결의 드래그/확대 동작을 SVG 내부로 격리
+- 그래프를 만질 때 부모 UI가 같이 움직이는 현상 차단
+- pointer capture 정리 및 resize 한 프레임 지연 처리
+- 태블릿 전용 레이아웃 추가
 
 ## 배포
+
 ```bash
 cd ~/Downloads && rm -rf SURYUNGGIL_COMMAENG && unzip -qo NEURON_MEMO_LATEST.zip && cd SURYUNGGIL_COMMAENG && bash publish.sh
 ```
 
 확인:
-`https://<owner>.github.io/neuron-memo/v032.html`
+`https://<owner>.github.io/neuron-memo/v033.html`
