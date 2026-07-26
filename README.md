@@ -1,28 +1,85 @@
-# 수령길-컴맹 v0.3.3
+# 수령길-컴맹 v0.9.0 — Release Candidate
 
-## 반응형 범위
+`정리하는 앱`이 아니라 `잃어버리지 않게 해주는 앱`.
 
-- PC: 1181px 이상
-- 태블릿: 761px ~ 1180px
-- 모바일: 760px 이하
-- 좁은 모바일: 420px 이하 추가 보정
+이번 버전은 **PC↔모바일 원격 연동을 제외한 배포 가능한 최종 로컬판**이다.
 
-## 이번 수정
+## 완성된 주요 기능
 
-- 모바일에서 페이지 전체가 좌우/상하로 흔들리는 현상 억제
-- 외부 body 스크롤/overscroll 차단
-- 필요한 목록과 메모 영역만 내부 스크롤
-- iOS Safari 주소창/키보드에 따른 viewport 높이 변화 대응
-- 생각 연결의 드래그/확대 동작을 SVG 내부로 격리
-- 그래프를 만질 때 부모 UI가 같이 움직이는 현상 차단
-- pointer capture 정리 및 resize 한 프레임 지연 처리
-- 태블릿 전용 레이아웃 추가
+### 메모
+- 큰 메모장 작성·이어쓰기·수정
+- 제목 직접 입력 및 자동 제목
+- 굵게, 밑줄, 취소선, 목록, 체크 항목, 링크
+- 수정 이력
+- 작성 중 임시 저장
+- 휴지통과 되돌리기
+- JSON·Markdown 백업
+- 로컬 복구 지점
+- IndexedDB 우선 저장
+
+### 생각 연결
+- 실제 메모에 존재하는 단어만 사용
+- 공통 단어 기반 자동 연결
+- 직접 연결
+- 연결 이유 표시
+- 관련 메모 검사 패널
+- 직접 연결 삭제
+- 검색, 범위, 연결 강도, 표시 개수 조절
+- 최대 120개 그래프 계산
+
+### 검색
+- 제목·본문 통합 검색
+- 제목/본문/직접 연결/미완료 체크/최근 30일 범위
+- 여러 단어 AND 검색
+- 따옴표 문장 검색
+- 날짜, 이후, 이전 문법
+- 결과 강조
+- 160개 단위 추가 표시
+
+### 다시보기
+- 오늘의 메모
+- 14일 이상 안 본 메모
+- 미완료 체크 항목
+- 연결 중심 메모
+- 이어 쓴 기록
+- 30·90·180·365일 전 메모
+- 하루 단위 다시 뽑기
+
+### 성능·보안
+- 50,000개 합성 메모 검색 성능 검사
+- 그래프 최대 120개 제한
+- 텍스트·토큰 캐시
+- IndexedDB 저장
+- JSON 가져오기 20MB 제한
+- 최대 100,000개 가져오기 안전 한도
+- HTML 정화 및 링크 프로토콜 제한
+- CSP로 외부 네트워크 연결 차단
+- GitHub PAT·API 코드 미포함
+- PWA 및 오프라인 캐시
+
+## 릴리스 검사
+
+```bash
+bash tests/release_check.sh
+```
 
 ## 배포
 
 ```bash
-cd ~/Downloads && rm -rf SURYUNGGIL_COMMAENG && unzip -qo NEURON_MEMO_LATEST.zip && cd SURYUNGGIL_COMMAENG && bash publish.sh
+cd ~/Downloads \
+&& rm -rf SURYUNGGIL_COMMAENG \
+&& unzip -qo NEURON_MEMO_LATEST.zip \
+&& cd SURYUNGGIL_COMMAENG \
+&& bash publish.sh
 ```
 
-확인:
-`https://<owner>.github.io/neuron-memo/v033.html`
+확인 주소:
+
+```text
+https://<네 GitHub 아이디>.github.io/neuron-memo/v090.html
+```
+
+## 마지막 남은 단계
+
+PC와 모바일이 같은 메모를 공유하는 **GitHub 기반 원격 연동**은 v1.0에서 마지막으로 연결한다.  
+v0.9.0에는 토큰 입력 UI나 GitHub API 실행 코드가 포함되어 있지 않다.

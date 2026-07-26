@@ -1,0 +1,22 @@
+{
+  "name": "수령길-컴맹",
+  "short_name": "수령길",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#c0c0c0",
+  "theme_color": "#245b78",
+  "lang": "ko-KR",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
