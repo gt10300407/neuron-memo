@@ -1,4 +1,4 @@
-# v0.9.0 배포 체크리스트
+# v0.9.3 배포 체크리스트
 
 ## 자동 검사
 - [ ] `bash tests/release_check.sh`
@@ -21,6 +21,6 @@
 - [ ] GitHub Actions test 성공
 - [ ] GitHub Pages deploy 성공
 - [ ] 기본 주소 확인
-- [ ] v090.html 확인
+- [ ] v093.html 확인
 - [ ] PWA 설치 확인
 - [ ] 오프라인 재접속 확인

@@ -59,6 +59,6 @@ fi
 gh workflow run pages.yml --repo "$REPO" >/dev/null 2>&1 || true
 
 echo
-echo "새 버전 확인: https://${OWNER}.github.io/${REPO_NAME}/v090.html"
+echo "새 버전 확인: https://${OWNER}.github.io/${REPO_NAME}/v093.html"
 echo "기본 주소: https://${OWNER}.github.io/${REPO_NAME}/"
 echo "처음에는 1~3분 정도 걸릴 수 있어."

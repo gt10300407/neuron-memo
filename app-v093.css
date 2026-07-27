@@ -767,3 +767,1193 @@ dialog[open] .dlg-body{
 @media(max-width:390px){.search{width:52%}.quick{grid-template-columns:minmax(0,1fr) 64px}.classic{padding-inline:7px}.format-btn{padding-inline:5px}.size-select{min-width:70px}.detail-top{grid-template-columns:auto minmax(0,1fr)}.detail-top .danger{grid-column:1/-1;justify-self:end}}
 
 .title-right{display:flex;align-items:center;gap:5px}.sync-title-btn{min-height:22px;padding:1px 8px;color:#111;background:var(--silver);border:2px solid;border-color:#fff #404040 #404040 #fff;font-size:11px}.sync-title-btn.connected{color:#fff;background:#2e6b45}.sync-title-btn.syncing{color:#111;background:#d8c36a}.sync-title-btn.error{color:#fff;background:#8b1e1e}.sync-panel{display:grid;gap:10px}.sync-note{padding:8px;background:#fffbe0;border:1px solid #8d8052;font-size:11px;line-height:1.55}.sync-grid{display:grid;grid-template-columns:150px minmax(0,1fr);gap:8px 10px;align-items:center}.sync-grid input[type=text],.sync-grid input[type=password]{width:100%;min-height:30px;padding:4px 6px;background:#fff;border:2px solid;border-color:#404040 #fff #fff #404040}.sync-check{display:flex;align-items:center;gap:7px;font-size:12px}.sync-actions{display:flex;gap:7px;flex-wrap:wrap}.sync-state{padding:8px;background:#efefef;border:2px solid;border-color:#404040 #fff #fff #404040;font-size:11px;line-height:1.5;white-space:pre-wrap}.sync-danger{color:#7d1111}@media(max-width:760px){.sync-title-btn{min-width:70px;padding-inline:5px}.sync-grid{grid-template-columns:1fr}}
+
+
+/* =========================================================
+   v0.9.1 FINAL UI PASS
+   Mobile-first structure override. Keep retro character,
+   remove desktop-shrunk-on-phone behavior.
+   ========================================================= */
+
+:root{
+  --ui-gap:10px;
+  --mobile-header:48px;
+  --mobile-bottom:68px;
+  --content-max:1480px;
+}
+
+*{box-sizing:border-box}
+button,select,input{font-family:inherit}
+button{white-space:nowrap}
+.hidden{display:none!important}
+
+/* Desktop polish */
+.desktop{
+  background:#087c7d;
+}
+.win{
+  width:min(var(--content-max),calc(100vw - 24px));
+  height:min(940px,calc(100dvh - 24px));
+}
+.titlebar{
+  min-height:32px;
+  padding:3px 7px;
+}
+.title-left{
+  min-width:0;
+  gap:7px;
+  font-size:13px;
+}
+.title-left>span:last-child{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.title-right{
+  margin-left:auto;
+}
+.title-save{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  min-height:23px;
+  padding:2px 7px;
+  color:#dfeee0;
+  background:transparent;
+  border:1px solid transparent;
+  font-size:11px;
+  cursor:pointer;
+}
+.title-save:hover{
+  background:rgba(255,255,255,.1);
+  border-color:rgba(255,255,255,.25);
+}
+.save-dot{color:#8fcb8d;font-size:10px}
+.build{margin-left:auto;font-size:10px;color:#4d5a4d}
+
+.toolbar{
+  min-height:66px;
+  gap:12px;
+  padding:10px 12px;
+}
+.toolbar-actions.search-actions{
+  display:grid;
+  grid-template-columns:minmax(260px,1fr) 150px auto auto;
+  align-items:center;
+  width:min(720px,68%);
+  max-width:none;
+  overflow:visible;
+  gap:6px;
+}
+.search-actions .search{
+  width:100%;
+  min-width:0;
+}
+.search-actions .classic{
+  min-width:74px;
+  white-space:nowrap;
+}
+#searchClear{
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+}
+#trashTopBtn{
+  min-width:90px;
+}
+.quick{
+  gap:8px;
+}
+.note-launcher{
+  display:flex;
+  min-width:0;
+  min-height:78px;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:11px 13px;
+  color:#111;
+  text-align:left;
+  background:#fff;
+  border:2px solid;
+  border-color:#404040 #fff #fff #404040;
+  cursor:pointer;
+}
+.note-launcher:hover{
+  background:#f8f7f1;
+}
+.launcher-copy{
+  display:grid;
+  min-width:0;
+  gap:4px;
+}
+.launcher-copy strong{
+  font-size:14px;
+}
+.launcher-copy small{
+  overflow:hidden;
+  color:#666;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size:11px;
+}
+.launcher-arrow{
+  flex:0 0 auto;
+  font-size:24px;
+  color:#245b78;
+}
+.detail-top{
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+}
+.detail-actions{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+.detail-actions .classic{
+  min-width:80px;
+}
+.append{
+  padding:10px;
+}
+.append .note-launcher{
+  min-height:72px;
+}
+.append-foot{
+  align-items:center;
+}
+.graph-tools{
+  max-width:min(900px,72%);
+  justify-content:flex-end;
+}
+.graph-tools>*{
+  flex:0 0 auto;
+}
+.graph-search{
+  min-width:180px;
+}
+.graph-search input{
+  width:145px;
+}
+.graph-layout{
+  min-height:0;
+}
+.graph-inspector{
+  min-width:0;
+}
+.review-tools{
+  max-width:none;
+}
+
+/* Tablet */
+@media (min-width:761px) and (max-width:1180px){
+  .toolbar-actions.search-actions{
+    grid-template-columns:minmax(200px,1fr) 128px auto;
+    width:min(570px,72%);
+  }
+  #trashTopBtn{display:none}
+  .graph-tools{
+    max-width:68%;
+  }
+}
+
+/* =========================
+   MOBILE REBUILD
+   ========================= */
+@media (max-width:760px){
+  :root{
+    --mnav:68px;
+    --tap-size:44px;
+  }
+
+  html,body{
+    width:100%;
+    height:var(--stable-vh,100dvh);
+    max-width:100%;
+    overflow:hidden!important;
+    background:var(--paper);
+  }
+  body{
+    position:fixed;
+    inset:0;
+    font-size:15px;
+  }
+  .desktop{
+    width:100%;
+    height:calc(var(--stable-vh,100dvh) - var(--mnav) - env(safe-area-inset-bottom));
+    min-height:0;
+    padding:0;
+    background:var(--paper);
+  }
+  .win{
+    width:100%;
+    height:100%!important;
+    max-height:none!important;
+    min-height:0!important;
+    grid-template-rows:var(--mobile-header) minmax(0,1fr);
+    border:0;
+    box-shadow:none;
+  }
+
+  /* App header: only identity. No desktop fake window controls. */
+  .titlebar{
+    height:var(--mobile-header);
+    min-height:var(--mobile-header);
+    padding:0 14px;
+    background:linear-gradient(90deg,#07146d,#244f86);
+  }
+  .title-left{
+    gap:8px;
+    font-size:17px;
+    font-weight:800;
+  }
+  .app-icon{
+    width:24px;
+    height:24px;
+    font-size:15px;
+  }
+  .title-right,.menu,.sidebar,.status{
+    display:none!important;
+  }
+
+  .layout{
+    display:block;
+    width:100%;
+    height:100%;
+    min-height:0;
+    padding:0;
+  }
+  .workspace{
+    width:100%;
+    height:100%;
+    min-height:0;
+    border:0;
+    overflow:hidden;
+  }
+  .view{
+    width:100%;
+    height:100%;
+    min-height:0;
+    overflow:hidden;
+  }
+  .view.active{
+    display:flex;
+    flex-direction:column;
+  }
+
+  /* Mobile page toolbar */
+  .toolbar{
+    flex:0 0 auto;
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    min-height:0;
+    padding:11px 12px 10px;
+    gap:9px;
+    border-bottom:1px solid #aaa;
+    overflow:visible;
+  }
+  .toolbar>div:first-child{
+    min-width:0;
+  }
+  .toolbar h1{
+    margin:0;
+    font-size:23px;
+    line-height:1.1;
+  }
+  .toolbar p{
+    display:none;
+  }
+
+  /* Search: one real row + compact controls, never clipped */
+  .toolbar-actions.search-actions{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto auto;
+    width:100%;
+    max-width:none;
+    gap:6px;
+    overflow:visible;
+  }
+  .search-actions .search{
+    grid-column:1/-1;
+    width:100%;
+    height:44px;
+    min-width:0;
+    padding:4px 9px;
+  }
+  .search-actions .search input{
+    min-width:0;
+    width:100%;
+    font-size:16px;
+  }
+  .search-scope{
+    min-width:0!important;
+    width:100%;
+    height:44px;
+    padding-inline:10px;
+    font-size:14px;
+  }
+  #searchClear,
+  #trashTopBtn{
+    display:inline-flex!important;
+    min-width:74px;
+    height:44px;
+    align-items:center;
+    justify-content:center;
+    padding:0 10px;
+    font-size:13px;
+  }
+  #trashTopBtn .trash-badge{
+    margin-left:5px;
+  }
+
+  /* Detail mode gets the whole screen. Search header disappears. */
+  body.mobile-detail [data-panel="notes"]>.toolbar{
+    display:none!important;
+  }
+  body.mobile-detail .notes-layout{
+    height:100%!important;
+  }
+
+  /* Notes list / detail */
+  .notes-layout{
+    flex:1 1 auto;
+    display:block;
+    width:100%;
+    height:auto!important;
+    min-height:0;
+    overflow:hidden;
+  }
+  .list-pane,
+  .detail-pane{
+    width:100%;
+    height:100%;
+    min-height:0;
+    border:0;
+  }
+  .list-pane{
+    display:flex;
+    flex-direction:column;
+    padding:10px;
+    gap:8px;
+  }
+  .detail-pane{
+    display:none;
+    padding:0;
+    overflow:hidden;
+  }
+  .notes-layout.detail-open .list-pane{display:none}
+  .notes-layout.detail-open .detail-pane{display:block}
+
+  .quick{
+    grid-template-columns:minmax(0,1fr) 92px;
+    gap:7px;
+    padding:0;
+    border:0;
+    background:transparent;
+  }
+  .note-launcher{
+    min-height:68px;
+    padding:9px 11px;
+  }
+  .launcher-copy strong{font-size:15px}
+  .launcher-copy small{font-size:11px}
+  #newBtn{
+    min-width:0;
+    height:68px;
+    padding:0 8px;
+    font-size:14px;
+  }
+  .list-meta{
+    padding:4px 2px;
+  }
+  .search-guide{
+    display:none;
+  }
+  .note-list{
+    flex:1 1 auto;
+    min-height:0;
+    overflow-y:auto;
+    border:2px solid;
+    border-color:#404040 #fff #fff #404040;
+    background:#fff;
+  }
+  .note-row{
+    min-height:82px;
+    padding:10px;
+  }
+
+  /* Detail mobile hierarchy */
+  .detail{
+    height:100%;
+    min-height:0;
+    padding:0;
+    overflow:hidden;
+  }
+  .detail-top{
+    display:grid;
+    grid-template-columns:auto minmax(0,1fr);
+    gap:8px 10px;
+    padding:10px 12px;
+    background:#f5f2ea;
+    border-bottom:1px solid #aaa;
+  }
+  .mobile-back{
+    display:inline-flex!important;
+    grid-row:1/3;
+    align-self:start;
+    min-width:64px;
+    height:44px;
+    align-items:center;
+    justify-content:center;
+    padding:0 9px;
+  }
+  .detail-top>div:nth-child(2){
+    min-width:0;
+  }
+  .title-input{
+    width:100%;
+    min-width:0;
+    min-height:42px;
+    padding:4px 0;
+    border:0;
+    background:transparent;
+    font-size:22px;
+    line-height:1.2;
+  }
+  .date-line{
+    display:grid;
+    gap:2px;
+    margin-top:4px;
+    font-size:11px;
+  }
+  .detail-actions{
+    grid-column:2;
+    display:flex;
+    justify-content:flex-end;
+    gap:6px;
+    min-width:0;
+  }
+  .detail-actions .classic{
+    min-width:72px;
+    height:42px;
+    padding:0 10px;
+    font-size:13px;
+  }
+  .timeline{
+    flex:1 1 auto;
+    min-height:0;
+    padding:10px 10px 0;
+    overflow-y:auto;
+  }
+  .entry{
+    margin-bottom:9px;
+  }
+  .entry-head{
+    min-height:36px;
+    padding:6px 8px;
+  }
+  .entry-body{
+    padding:12px;
+    font-size:15px;
+    line-height:1.6;
+  }
+
+  /* Continue-writing is a compact launcher, not a fake tiny editor */
+  .append{
+    flex:0 0 auto;
+    margin:8px 10px 10px;
+    padding:9px;
+  }
+  .append>label{
+    margin-bottom:7px;
+    font-size:15px;
+  }
+  .append .note-launcher{
+    min-height:62px;
+  }
+  .append-foot{
+    margin-top:7px;
+    gap:7px;
+  }
+  .append-foot>span{
+    overflow:hidden;
+    color:#666;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    font-size:10px;
+  }
+  #appendBtn{
+    flex:0 0 auto;
+    height:44px;
+    padding-inline:14px;
+  }
+
+  /* Graph toolbar is intentionally 3 rows and readable */
+  .graph-toolbar{
+    display:grid;
+    grid-template-columns:1fr;
+    padding:10px;
+    gap:8px;
+  }
+  .graph-toolbar h1{
+    font-size:23px;
+  }
+  .graph-tools{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    width:100%;
+    max-width:none;
+    gap:6px;
+    overflow:visible;
+  }
+  .graph-stats{
+    display:none!important;
+  }
+  .graph-search{
+    grid-column:1/-1;
+    width:100%;
+    min-width:0;
+    height:42px;
+    padding:3px 8px;
+  }
+  .graph-search input{
+    width:100%;
+    min-width:0;
+    font-size:15px;
+  }
+  .graph-tools select,
+  .graph-tools .classic{
+    width:100%;
+    min-width:0!important;
+    height:42px;
+    padding:0 6px!important;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size:12px!important;
+  }
+  #graphMode{
+    grid-column:1/3;
+  }
+  #graphLimit{
+    grid-column:3;
+  }
+  #graphStrength{
+    grid-column:1;
+  }
+  #graphLinkModeBtn{
+    grid-column:2;
+  }
+  #resetGraph{
+    grid-column:3;
+  }
+
+  .graph-layout{
+    flex:1 1 auto;
+    display:flex;
+    flex-direction:column;
+    height:auto;
+    min-height:0;
+    padding:0;
+    overflow:hidden;
+  }
+  .graph-box{
+    flex:1 1 auto;
+    width:calc(100% - 16px);
+    min-height:300px!important;
+    margin:8px 8px 5px!important;
+  }
+  .graph-canvas{
+    min-height:0!important;
+  }
+  .graph-legend{
+    display:none!important;
+  }
+  .graph-help{
+    left:7px;
+    right:7px;
+    bottom:7px;
+    max-height:none;
+    padding:5px 7px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    font-size:9px;
+  }
+  .graph-link-mode-banner{
+    left:8px;
+    right:8px;
+    top:8px;
+    transform:none;
+    width:auto;
+    font-size:11px;
+    text-align:center;
+  }
+  .graph-inspector{
+    flex:0 0 auto;
+    width:calc(100% - 16px);
+    max-height:28%;
+    min-height:66px;
+    margin:0 8px 8px!important;
+    padding:8px;
+    overflow:auto;
+  }
+  .graph-inspector-empty{
+    min-height:50px;
+    height:auto;
+  }
+  .graph-inspector h2{
+    font-size:15px;
+  }
+
+  /* Review */
+  .review-toolbar{
+    display:grid;
+    grid-template-columns:1fr;
+    padding:10px;
+    gap:8px;
+  }
+  .review-tools{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    width:100%;
+    max-width:none;
+    gap:6px;
+    overflow:visible;
+  }
+  .review-tools select,
+  .review-tools button{
+    height:42px;
+  }
+  .review-summary{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:6px;
+    padding:8px;
+  }
+  .review-grid{
+    flex:1 1 auto;
+    min-height:0;
+    grid-template-columns:1fr;
+    padding:0 8px 8px;
+    overflow-y:auto;
+  }
+
+  /* Bottom navigation */
+  .mobile-nav{
+    height:calc(var(--mnav) + env(safe-area-inset-bottom));
+    padding:4px 4px env(safe-area-inset-bottom);
+    background:#c8c8c8;
+    border-top:1px solid #777;
+  }
+  .mobile-nav button{
+    min-width:0;
+    min-height:0!important;
+    border-width:1px;
+  }
+  .mobile-nav span{
+    font-size:18px;
+  }
+  .mobile-nav b{
+    font-size:11px;
+  }
+
+  /* Note editor dialogs become real mobile editors */
+  dialog.note-window[open]{
+    inset:max(6px,env(safe-area-inset-top)) 6px max(6px,env(safe-area-inset-bottom)) 6px!important;
+    width:auto!important;
+    max-width:none!important;
+    height:auto!important;
+    max-height:none!important;
+    margin:0;
+    transform:none!important;
+    display:grid;
+    grid-template-rows:auto minmax(0,1fr) auto;
+    border-width:2px;
+    box-shadow:5px 5px 0 rgba(0,0,0,.35);
+  }
+  .note-window .dlg-title{
+    min-height:48px;
+    padding:5px 7px 5px 10px;
+  }
+  .note-window .dlg-title strong{
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    font-size:15px;
+  }
+  .note-window .dlg-title button{
+    width:38px;
+    min-width:38px;
+    height:38px;
+  }
+  .note-window[open] .dlg-body{
+    display:flex;
+    flex-direction:column;
+    min-height:0;
+    max-height:none!important;
+    padding:8px;
+    overflow:hidden;
+  }
+  .note-title-field{
+    flex:0 0 auto;
+    min-height:44px;
+    margin-bottom:6px;
+  }
+  .note-window-toolbar.rich-toolbar{
+    position:relative;
+    top:auto;
+    flex:0 0 auto;
+    display:flex;
+    flex-wrap:nowrap;
+    width:100%;
+    margin:0 0 6px;
+    padding:4px;
+    overflow-x:auto;
+    background:#d0d0d0;
+  }
+  .note-window-toolbar .format-btn{
+    min-width:42px!important;
+    width:42px;
+    height:40px;
+    padding:0 5px!important;
+    font-size:14px;
+  }
+  .note-window-toolbar .size-select{
+    flex:0 0 82px;
+    width:82px;
+    height:40px;
+  }
+  .toolbar-separator{
+    min-height:32px;
+  }
+  .note-window-editor{
+    flex:1 1 auto!important;
+    width:100%;
+    min-height:160px!important;
+    max-height:none!important;
+    padding:12px!important;
+    overflow-y:auto!important;
+    font-size:16px!important;
+    line-height:1.6!important;
+  }
+  .note-window-meta{
+    flex:0 0 auto;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:5px 8px;
+    min-height:40px;
+    margin:6px 0 0;
+    font-size:10px;
+  }
+  .note-window-meta>span{
+    min-width:0;
+  }
+  .draft-clear{
+    min-height:34px!important;
+  }
+  .note-window-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:7px;
+    padding:7px 8px 8px;
+    background:#c9c9c9;
+    border-top:1px solid #888;
+  }
+  .note-window-buttons .classic{
+    width:100%;
+    height:48px;
+    margin:0;
+    font-size:15px;
+  }
+
+  /* Other dialogs */
+  dialog:not(.note-window)[open]{
+    inset:50% 8px auto 8px!important;
+    width:auto!important;
+    max-width:none!important;
+    transform:translateY(-50%)!important;
+  }
+}
+
+@media (max-width:390px){
+  .toolbar-actions.search-actions{
+    grid-template-columns:minmax(0,1fr) 70px;
+  }
+  .search-actions .search{grid-column:1/-1}
+  .search-scope{grid-column:1}
+  #searchClear{grid-column:2}
+  #trashTopBtn{display:none!important}
+
+  .quick{
+    grid-template-columns:minmax(0,1fr) 78px;
+  }
+  .launcher-copy small{
+    max-width:190px;
+  }
+
+  .detail-top{
+    grid-template-columns:58px minmax(0,1fr);
+  }
+  .mobile-back{
+    min-width:58px;
+    padding:0 5px;
+  }
+  .detail-actions .classic{
+    min-width:64px;
+    padding-inline:7px;
+  }
+
+  .graph-tools{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  #graphMode{grid-column:1/-1}
+  #graphLimit{grid-column:1}
+  #graphStrength{grid-column:2}
+  #graphLinkModeBtn{grid-column:1}
+  #resetGraph{grid-column:2}
+}
+
+
+/* ===== v0.9.2 MOBILE HOTFIX ===== */
+@media (max-width:760px){
+
+  [data-panel="graph"]{
+    overflow:hidden!important;
+  }
+
+  [data-panel="graph"] .graph-toolbar{
+    flex:0 0 auto!important;
+    display:block!important;
+    width:100%!important;
+    min-height:0!important;
+    padding:9px 10px 8px!important;
+    overflow:visible!important;
+  }
+
+  [data-panel="graph"] .graph-toolbar>div:first-child{
+    margin:0 0 7px!important;
+  }
+
+  [data-panel="graph"] .graph-toolbar h1{
+    margin:0!important;
+    font-size:22px!important;
+    line-height:1.15!important;
+  }
+
+  [data-panel="graph"] .graph-toolbar p{
+    display:none!important;
+  }
+
+  [data-panel="graph"] .graph-tools{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) minmax(0,.72fr) minmax(0,.72fr)!important;
+    grid-auto-rows:40px!important;
+    width:100%!important;
+    max-width:none!important;
+    min-width:0!important;
+    gap:5px!important;
+    padding:0!important;
+    overflow:visible!important;
+  }
+
+  [data-panel="graph"] .graph-stats{
+    display:none!important;
+  }
+
+  [data-panel="graph"] .graph-search{
+    grid-column:1/-1!important;
+    display:flex!important;
+    width:100%!important;
+    min-width:0!important;
+    max-width:none!important;
+    height:40px!important;
+    padding:3px 8px!important;
+    overflow:hidden!important;
+  }
+
+  [data-panel="graph"] .graph-search input{
+    width:100%!important;
+    min-width:0!important;
+    max-width:none!important;
+    height:30px!important;
+    font-size:15px!important;
+  }
+
+  [data-panel="graph"] #graphMode{grid-column:1/3!important}
+  [data-panel="graph"] #graphLimit{grid-column:3!important}
+  [data-panel="graph"] #graphStrength{grid-column:1!important}
+  [data-panel="graph"] #graphLinkModeBtn{grid-column:2!important}
+  [data-panel="graph"] #resetGraph{grid-column:3!important}
+
+  [data-panel="graph"] .graph-tools select,
+  [data-panel="graph"] .graph-tools button{
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    height:40px!important;
+    min-height:40px!important;
+    padding:0 5px!important;
+    margin:0!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+    font-size:11px!important;
+  }
+
+  [data-panel="graph"] .graph-layout{
+    flex:1 1 0!important;
+    display:grid!important;
+    grid-template-rows:minmax(0,1fr) auto!important;
+    width:100%!important;
+    height:auto!important;
+    min-height:0!important;
+    padding:0 7px 7px!important;
+    overflow:hidden!important;
+  }
+
+  [data-panel="graph"] .graph-box{
+    grid-row:1!important;
+    width:100%!important;
+    height:100%!important;
+    min-height:0!important;
+    max-height:none!important;
+    margin:0!important;
+    overflow:hidden!important;
+  }
+
+  [data-panel="graph"] .graph-canvas,
+  [data-panel="graph"] #graph{
+    width:100%!important;
+    height:100%!important;
+    min-height:0!important;
+    max-height:none!important;
+  }
+
+  [data-panel="graph"] .graph-legend{
+    display:none!important;
+  }
+
+  [data-panel="graph"] .graph-help{
+    left:6px!important;
+    right:6px!important;
+    bottom:6px!important;
+    max-width:none!important;
+    padding:4px 6px!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    font-size:9px!important;
+  }
+
+  [data-panel="graph"] .graph-link-mode-banner{
+    left:7px!important;
+    right:7px!important;
+    width:auto!important;
+    transform:none!important;
+  }
+
+  [data-panel="graph"] .graph-inspector{
+    grid-row:2!important;
+    width:100%!important;
+    min-width:0!important;
+    min-height:54px!important;
+    max-height:118px!important;
+    margin:5px 0 0!important;
+    padding:7px!important;
+    overflow:auto!important;
+  }
+
+  [data-panel="graph"] .graph-inspector-empty{
+    min-height:38px!important;
+    height:auto!important;
+    padding:5px!important;
+  }
+
+  [data-panel="graph"] .graph-inspector-empty strong{
+    font-size:13px!important;
+  }
+
+  [data-panel="graph"] .graph-inspector-empty span{
+    font-size:10px!important;
+  }
+
+  /* Editor toolbar: explicit icon width. */
+  dialog.note-window[open] .rich-toolbar{
+    display:flex!important;
+    width:100%!important;
+    max-width:100%!important;
+    flex-wrap:nowrap!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+  }
+
+  dialog.note-window[open] .format-btn{
+    flex:0 0 42px!important;
+    width:42px!important;
+    min-width:42px!important;
+    max-width:42px!important;
+    height:40px!important;
+    min-height:40px!important;
+    padding:0!important;
+    overflow:hidden!important;
+    white-space:nowrap!important;
+  }
+
+  dialog.note-window[open] .size-select{
+    flex:0 0 80px!important;
+    width:80px!important;
+    min-width:80px!important;
+    height:40px!important;
+  }
+}
+
+@media (max-width:390px){
+  [data-panel="graph"] .graph-tools{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  }
+  [data-panel="graph"] #graphMode{grid-column:1/-1!important}
+  [data-panel="graph"] #graphLimit{grid-column:1!important}
+  [data-panel="graph"] #graphStrength{grid-column:2!important}
+  [data-panel="graph"] #graphLinkModeBtn{grid-column:1!important}
+  [data-panel="graph"] #resetGraph{grid-column:2!important}
+}
+
+
+/* ============================================================
+   v0.9.3 MOBILE REBUILD
+   This block intentionally overrides every earlier mobile rule.
+   ============================================================ */
+@media (max-width:760px){
+  :root{--mnav:64px;--mobile-title:46px}
+  html,body{width:100%;height:100%;max-width:100%;overflow:hidden!important;background:#f6f3ea}
+  body{position:fixed;inset:0;margin:0;font-size:14px}
+  .desktop{width:100%;height:calc(100dvh - var(--mnav) - env(safe-area-inset-bottom));padding:0;background:#f6f3ea;overflow:hidden}
+  .win{width:100%;height:100%!important;max-height:none!important;min-height:0!important;display:grid;grid-template-rows:var(--mobile-title) minmax(0,1fr);border:0!important;box-shadow:none!important;background:#f6f3ea}
+  .titlebar{height:var(--mobile-title)!important;min-height:var(--mobile-title)!important;padding:0 12px!important;background:linear-gradient(90deg,#091675,#2c5988)!important;border:0!important}
+  .title-left{gap:8px!important;color:#fff!important;font-size:17px!important;font-weight:800!important}
+  .app-icon{width:24px!important;height:24px!important;display:grid!important;place-items:center!important;font-size:14px!important;background:#ded9c9!important;color:#111!important;border:1px solid #111!important}
+  .title-right,.menu,.sidebar,.status{display:none!important}
+  .layout{display:block!important;width:100%;height:100%;min-height:0;padding:0!important;overflow:hidden}
+  .workspace{width:100%;height:100%;min-height:0;border:0!important;overflow:hidden;background:#f6f3ea}
+  .view{width:100%;height:100%;min-height:0;overflow:hidden!important}
+  .view.active{display:flex!important;flex-direction:column!important}
+
+  /* Notes page header */
+  [data-panel="notes"]>.toolbar{flex:0 0 auto!important;display:grid!important;grid-template-columns:1fr!important;gap:8px!important;padding:10px 11px!important;min-height:0!important;border-bottom:1px solid #aaa!important;overflow:visible!important;background:#ece9df!important}
+  [data-panel="notes"]>.toolbar>div:first-child{min-width:0!important}
+  [data-panel="notes"]>.toolbar h1{margin:0!important;font-size:22px!important;line-height:1.15!important}
+  [data-panel="notes"]>.toolbar p{display:none!important}
+  .toolbar-actions.search-actions{display:grid!important;grid-template-columns:minmax(0,1fr) 108px 76px!important;width:100%!important;max-width:none!important;gap:6px!important;overflow:visible!important}
+  .search-actions .search{grid-column:1/-1!important;width:100%!important;min-width:0!important;height:42px!important;padding:4px 9px!important;overflow:hidden!important;background:#fff!important}
+  .search-actions .search input{width:100%!important;min-width:0!important;font-size:16px!important}
+  .search-scope{grid-column:1!important;width:100%!important;min-width:0!important;height:42px!important;padding:0 8px!important;font-size:14px!important}
+  #searchClear{grid-column:2!important;display:inline-flex!important;width:100%!important;min-width:0!important;height:42px!important;align-items:center!important;justify-content:center!important;padding:0 6px!important;font-size:12px!important}
+  #trashTopBtn{grid-column:3!important;display:inline-flex!important;width:100%!important;min-width:0!important;height:42px!important;align-items:center!important;justify-content:center!important;padding:0 5px!important;font-size:0!important}
+  #trashTopBtn:before{content:'휴지통';font-size:11px!important}
+  #trashTopBtn .trash-badge{margin-left:4px!important;font-size:9px!important}
+
+  body.mobile-detail [data-panel="notes"]>.toolbar{display:none!important}
+  body.mobile-detail .notes-layout{height:100%!important}
+
+  /* Notes list */
+  .notes-layout{flex:1 1 auto!important;display:block!important;width:100%!important;height:auto!important;min-height:0!important;overflow:hidden!important}
+  .list-pane,.detail-pane{width:100%!important;height:100%!important;min-height:0!important;border:0!important}
+  .list-pane{display:flex!important;flex-direction:column!important;padding:9px!important;gap:7px!important;overflow:hidden!important}
+  .detail-pane{display:none!important;padding:0!important;overflow:hidden!important}
+  .notes-layout.detail-open .list-pane{display:none!important}
+  .notes-layout.detail-open .detail-pane{display:block!important}
+  .quick{display:grid!important;grid-template-columns:minmax(0,1fr) 86px!important;gap:7px!important;padding:0!important;border:0!important;background:transparent!important}
+  .quick .note-launcher{display:flex!important;min-width:0!important;min-height:62px!important;padding:9px 10px!important;align-items:center!important;justify-content:space-between!important;overflow:hidden!important}
+  .quick .launcher-copy{min-width:0!important}
+  .quick .launcher-copy strong{font-size:14px!important}
+  .quick .launcher-copy small{max-width:210px!important;font-size:10px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+  .quick .launcher-arrow{font-size:20px!important}
+  #newBtn{width:86px!important;min-width:0!important;height:62px!important;padding:0 6px!important;font-size:14px!important}
+  .list-meta{padding:3px 1px!important;font-size:11px!important}
+  .search-guide{display:none!important}
+  .note-list{flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;background:#fff!important;border:1px solid #666!important}
+  .note-row{min-height:74px!important;padding:9px!important}
+  .note-title{font-size:14px!important}
+  .note-preview{font-size:11px!important}
+
+  /* Note detail */
+  .detail{height:100%!important;min-height:0!important;display:flex!important;flex-direction:column!important;padding:0!important;overflow:hidden!important}
+  .detail-top{flex:0 0 auto!important;display:grid!important;grid-template-columns:58px minmax(0,1fr)!important;gap:7px 9px!important;padding:9px 10px!important;background:#f7f4ec!important;border-bottom:1px solid #aaa!important}
+  .mobile-back{display:inline-flex!important;grid-row:1/3!important;width:58px!important;min-width:58px!important;height:42px!important;align-items:center!important;justify-content:center!important;padding:0 4px!important;font-size:12px!important}
+  .detail-top>div:nth-child(2){min-width:0!important}
+  .title-input{width:100%!important;min-width:0!important;min-height:36px!important;padding:0!important;border:0!important;background:transparent!important;font-size:20px!important;line-height:1.2!important}
+  .date-line{display:grid!important;gap:1px!important;margin-top:3px!important;font-size:10px!important;color:#666!important}
+  .detail-actions{grid-column:2!important;display:flex!important;justify-content:flex-end!important;gap:5px!important}
+  .detail-actions .classic{width:auto!important;min-width:64px!important;height:38px!important;padding:0 7px!important;font-size:12px!important}
+  .timeline{flex:1 1 auto!important;min-height:0!important;padding:8px 8px 0!important;overflow-y:auto!important}
+  .entry{margin-bottom:8px!important}
+  .entry-head{min-height:32px!important;padding:5px 7px!important;font-size:10px!important}
+  .entry-body{padding:11px!important;font-size:15px!important;line-height:1.55!important}
+  .append{flex:0 0 auto!important;margin:7px 8px 8px!important;padding:8px!important}
+  .append>label{margin-bottom:5px!important;font-size:14px!important}
+  .append .note-launcher{display:flex!important;min-height:56px!important;padding:8px 9px!important}
+  .append-foot{margin-top:6px!important;gap:6px!important}
+  .append-foot>span{overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;font-size:9px!important;color:#666!important}
+  #appendBtn{height:40px!important;padding:0 11px!important;font-size:12px!important}
+
+  /* Thought connection: NOTHING may extend outside viewport */
+  [data-panel="graph"]>.graph-toolbar{flex:0 0 auto!important;display:block!important;width:100%!important;min-height:0!important;padding:9px 10px 7px!important;background:#ece9df!important;border-bottom:1px solid #aaa!important;overflow:hidden!important}
+  [data-panel="graph"]>.graph-toolbar>div:first-child{margin:0 0 7px!important;min-width:0!important}
+  [data-panel="graph"]>.graph-toolbar h1{margin:0!important;font-size:22px!important;line-height:1.15!important}
+  [data-panel="graph"]>.graph-toolbar p{display:none!important}
+  .graph-tools{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;grid-auto-rows:40px!important;width:100%!important;max-width:none!important;min-width:0!important;gap:5px!important;padding:0!important;overflow:hidden!important}
+  .graph-stats{display:none!important}
+  .graph-search{grid-column:1/-1!important;display:flex!important;width:100%!important;min-width:0!important;max-width:100%!important;height:40px!important;padding:3px 8px!important;overflow:hidden!important}
+  .graph-search input{width:100%!important;min-width:0!important;max-width:100%!important;height:30px!important;font-size:15px!important}
+  #graphMode{grid-column:1/-1!important}
+  #graphLimit{grid-column:1!important}
+  #graphStrength{grid-column:2!important}
+  #graphLinkModeBtn{grid-column:1!important}
+  #resetGraph{grid-column:2!important}
+  .graph-tools select,.graph-tools button{display:block!important;width:100%!important;min-width:0!important;max-width:100%!important;height:40px!important;min-height:40px!important;padding:0 5px!important;margin:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;font-size:11px!important}
+  .graph-layout{flex:1 1 0!important;display:grid!important;grid-template-rows:minmax(0,1fr) auto!important;width:100%!important;height:auto!important;min-height:0!important;padding:7px!important;overflow:hidden!important}
+  .graph-box{grid-row:1!important;width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;margin:0!important;overflow:hidden!important;border:1px solid #555!important}
+  .graph-canvas,#graph{display:block!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;max-width:100%!important;max-height:100%!important}
+  .graph-legend{display:none!important}
+  .graph-help{left:5px!important;right:5px!important;bottom:5px!important;max-width:none!important;max-height:22px!important;padding:3px 5px!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;font-size:8px!important}
+  .graph-link-mode-banner{left:6px!important;right:6px!important;top:6px!important;width:auto!important;transform:none!important;font-size:10px!important;text-align:center!important}
+  .graph-inspector{grid-row:2!important;width:100%!important;min-width:0!important;min-height:52px!important;max-height:100px!important;margin:5px 0 0!important;padding:6px!important;overflow:auto!important}
+  .graph-inspector-empty{height:auto!important;min-height:36px!important;padding:4px!important}
+  .graph-inspector-empty strong{font-size:12px!important}
+  .graph-inspector-empty span{font-size:9px!important}
+
+  /* Review */
+  .review-toolbar{flex:0 0 auto!important;display:block!important;padding:9px 10px 7px!important;overflow:hidden!important}
+  .review-toolbar h1{font-size:22px!important}
+  .review-toolbar p{display:none!important}
+  .review-tools{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;width:100%!important;max-width:none!important;gap:5px!important;margin-top:7px!important;overflow:hidden!important}
+  .review-tools select,.review-tools button{height:40px!important;min-width:0!important}
+  .review-summary{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:5px!important;padding:7px!important}
+  .review-grid{flex:1 1 auto!important;min-height:0!important;grid-template-columns:1fr!important;padding:0 7px 7px!important;overflow-y:auto!important}
+
+  /* Bottom nav */
+  .mobile-nav{height:calc(var(--mnav) + env(safe-area-inset-bottom))!important;padding:3px 3px env(safe-area-inset-bottom)!important;background:#c8c8c8!important;border-top:1px solid #777!important}
+  .mobile-nav button{min-width:0!important;min-height:0!important;border-width:1px!important}
+  .mobile-nav span{font-size:16px!important}
+  .mobile-nav b{font-size:10px!important}
+
+  /* Full-screen editor dialogs */
+  dialog.note-window[open]{inset:max(5px,env(safe-area-inset-top)) 5px max(5px,env(safe-area-inset-bottom)) 5px!important;width:auto!important;max-width:none!important;height:auto!important;max-height:none!important;margin:0!important;transform:none!important;display:grid!important;grid-template-rows:auto minmax(0,1fr) auto!important;border:2px solid #fff!important;box-shadow:4px 4px 0 rgba(0,0,0,.35)!important;overflow:hidden!important}
+  .note-window .dlg-title{min-height:44px!important;padding:4px 6px 4px 9px!important}
+  .note-window .dlg-title strong{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;font-size:14px!important}
+  .note-window .dlg-title button{width:36px!important;min-width:36px!important;height:36px!important}
+  .note-window[open] .dlg-body{display:flex!important;flex-direction:column!important;min-height:0!important;max-height:none!important;padding:7px!important;overflow:hidden!important}
+  .note-title-field{flex:0 0 auto!important;min-height:42px!important;margin-bottom:5px!important;font-size:15px!important}
+  dialog.note-window[open] .rich-toolbar{position:relative!important;top:auto!important;flex:0 0 auto!important;display:flex!important;flex-wrap:nowrap!important;width:100%!important;max-width:100%!important;margin:0 0 5px!important;padding:3px!important;overflow-x:auto!important;overflow-y:hidden!important}
+  dialog.note-window[open] .format-btn{flex:0 0 40px!important;width:40px!important;min-width:40px!important;max-width:40px!important;height:38px!important;min-height:38px!important;padding:0!important;font-size:13px!important}
+  dialog.note-window[open] .size-select{flex:0 0 76px!important;width:76px!important;min-width:76px!important;height:38px!important}
+  .toolbar-separator{flex:0 0 1px!important;min-height:28px!important}
+  .note-window-editor{flex:1 1 auto!important;width:100%!important;min-height:120px!important;max-height:none!important;padding:11px!important;overflow-y:auto!important;font-size:16px!important;line-height:1.55!important}
+  .note-window-meta{flex:0 0 auto!important;display:grid!important;grid-template-columns:1fr auto!important;gap:4px 6px!important;margin:5px 0 0!important;font-size:9px!important}
+  .draft-clear{min-height:32px!important;padding:0 6px!important;font-size:9px!important}
+  .note-window-buttons{display:grid!important;grid-template-columns:1fr 1fr!important;gap:6px!important;padding:6px 7px 7px!important;background:#c9c9c9!important;border-top:1px solid #888!important}
+  .note-window-buttons .classic{width:100%!important;height:44px!important;margin:0!important;font-size:14px!important}
+
+  dialog:not(.note-window)[open]{inset:50% 7px auto 7px!important;width:auto!important;max-width:none!important;transform:translateY(-50%)!important}
+}

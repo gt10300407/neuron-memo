@@ -6,7 +6,7 @@ cd "$ROOT"
 
 echo "===== 수령길-컴맹 릴리스 검사 ====="
 echo "[1/4] JavaScript 문법"
-node --check app.js
+node --check app-v093.js
 
 echo "[2/4] 정적·보안 감사"
 python3 tests/static_audit.py

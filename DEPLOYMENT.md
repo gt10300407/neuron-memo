@@ -24,7 +24,7 @@ SURYUNGGIL_REPO_NAME=suryunggil-commaeng bash publish.sh
 
 ```text
 https://<GitHub아이디>.github.io/<저장소이름>/
-https://<GitHub아이디>.github.io/<저장소이름>/v090.html
+https://<GitHub아이디>.github.io/<저장소이름>/v093.html
 ```
 
 ## 주의

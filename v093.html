@@ -7,29 +7,28 @@
 <meta name="referrer" content="no-referrer">
 <meta name="theme-color" content="#245b78">
 <meta name="color-scheme" content="light">
-<link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon-192.png">
-<title>수령길-컴맹 v0.9.0</title>
-<link rel="stylesheet" href="app.css">
+<title>수령길-컴맹 v0.9.3</title>
+<link rel="stylesheet" href="app-v093.css">
 </head>
 <body>
 <div class="desktop"><main class="win">
-<header class="titlebar"><div class="title-left"><span class="app-icon">▤</span><span>수령길-컴맹</span></div><div class="title-right"><button class="classic safety-status" id="backupTop" type="button">▣ 로컬 보호</button><div class="win-buttons" aria-hidden="true"><span>_</span><span>□</span><span>×</span></div></div></header>
-<div class="menu"><button id="menuFile">파일</button><button id="menuView">보기</button><button id="menuHelp">도움말</button><span class="build">v0.9.0 · RELEASE CANDIDATE</span></div>
+<header class="titlebar"><div class="title-left"><span class="app-icon">▤</span><span>수령길-컴맹</span></div><div class="title-right"><button class="title-save" id="backupTop" type="button" title="백업·복구 열기"><span class="save-dot">●</span><span>로컬 저장</span></button></div></header>
+<div class="menu"><button id="menuFile">파일</button><button id="menuView">보기</button><button id="menuHelp">도움말</button><span class="build">v0.9.3 · MOBILE REBUILD</span></div>
 <div class="layout">
 <aside class="sidebar"><nav class="nav"><button class="active" data-view="notes"><span class="ico">▤</span><span>메모</span></button><button data-view="graph"><span class="ico">⌘</span><span>생각 연결</span></button><button data-view="review"><span class="ico">◷</span><span>다시보기</span></button></nav><div class="side-actions"><button class="classic" id="trashBtn">휴지통 <span class="trash-badge" id="trashCountSide">0</span></button><button class="classic" id="backupBtn">백업·복구</button><input class="hidden" id="importFile" type="file" accept=".json,application/json"></div></aside>
 <section class="workspace">
 <section class="view active" data-panel="notes">
-<div class="toolbar"><div><h1>메모</h1><p>제목·본문·날짜·연결·체크 항목까지 빠르게 찾아.</p></div><div class="toolbar-actions search-actions"><label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder='검색어 또는 "정확한 문장"'></label><select class="classic search-scope" id="searchScope" aria-label="검색 범위"><option value="all">전체</option><option value="title">제목</option><option value="body">본문</option><option value="linked">직접 연결된 메모</option><option value="tasks">미완료 체크</option><option value="recent30">최근 30일</option></select><button class="classic" id="searchClear" type="button">지우기</button><button class="classic safety-button" id="trashTopBtn" type="button">휴지통 <span class="trash-badge" id="trashCountTop">0</span></button></div></div>
+<div class="toolbar"><div><h1>메모</h1><p>제목·본문·날짜·연결·체크 항목까지 빠르게 찾아.</p></div><div class="toolbar-actions search-actions"><label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder='검색어 또는 "정확한 문장"'></label><select class="classic search-scope" id="searchScope" aria-label="검색 범위"><option value="all">전체</option><option value="title">제목</option><option value="body">본문</option><option value="linked">직접 연결된 메모</option><option value="tasks">미완료 체크</option><option value="recent30">최근 30일</option></select><button class="classic" id="searchClear" type="button">초기화</button><button class="classic safety-button" id="trashTopBtn" type="button" aria-label="휴지통">휴지통 <span class="trash-badge" id="trashCountTop">0</span></button></div></div>
 <div class="notes-layout" id="notesLayout">
 <section class="list-pane">
-<div class="quick"><div class="quick-editor-wrap" id="quickEditorWrap"><div class="rich-toolbar"><button class="format-btn" type="button" disabled><b>B</b></button><button class="format-btn" type="button" disabled><u>U</u></button><select class="size-select" disabled><option>보통</option></select><span class="launch-hint">클릭하면 큰 메모장 열기</span></div><div class="rich-editor" id="quickEditor" contenteditable="false" data-placeholder="뭐든 적어..."></div></div><button class="classic primary" id="newBtn">새 메모</button></div>
+<div class="quick"><button class="quick-editor-wrap note-launcher" id="quickEditorWrap" type="button"><span class="launcher-copy"><strong>빠른 메모</strong><small>클릭하면 큰 메모장으로 작성</small></span><span class="launcher-arrow">→</span><span class="rich-editor hidden" id="quickEditor" contenteditable="false"></span></button><button class="classic primary" id="newBtn">새 메모</button></div>
 <div class="list-meta"><span id="countText">0개</span><div class="list-meta-actions"><select id="sortSelect"><option value="updated">최근 수정순</option><option value="created">최근 작성순</option><option value="old">오래된 작성순</option><option value="title">제목순</option></select><button class="classic hidden" id="loadMoreBtn" type="button">더 보기</button></div></div><div class="search-guide" id="searchGuide">여러 단어는 모두 포함 · 날짜:2026-07-26 · 이후:2026-07-01 · 이전:2026-07-31</div><div class="note-list" id="noteList"></div>
 </section>
 <section class="detail-pane"><div class="empty" id="emptyState"><div class="big">▤</div><strong>메모를 선택해.</strong><span>오른쪽 내용은 고정된 영역 안에서만 스크롤돼.</span></div>
 <article class="detail hidden" id="detail"><div class="detail-top"><button class="classic mobile-back" id="backBtn">← 목록</button><div><input class="title-input" id="titleInput" maxlength="160"><div class="date-line"><span>최초 기록 <b id="createdText"></b></span><span>최종 수정 <b id="updatedText"></b></span></div></div><div class="detail-actions"><button class="classic" id="linkBtn">메모 연결</button><button class="classic danger" id="deleteBtn">삭제</button></div></div>
 <div class="timeline" id="timeline"></div>
-<div class="append"><label>이어서 기록하기</label><div class="append-editor-wrap" id="appendEditorWrap"><div class="rich-toolbar"><button class="format-btn" type="button" disabled><b>B</b></button><button class="format-btn" type="button" disabled><u>U</u></button><select class="size-select" disabled><option>보통</option></select><span class="launch-hint">클릭하면 큰 메모장 열기</span></div><div class="rich-editor append-editor" id="appendEditor" contenteditable="false" data-placeholder="기존 메모 아래에 새 내용을 추가해..."></div></div><div class="append-foot"><span>추가 날짜와 시간은 자동 기록돼.</span><button class="classic primary" id="appendBtn">기록 추가</button></div></div>
+<div class="append"><label>이어서 기록하기</label><button class="append-editor-wrap note-launcher" id="appendEditorWrap" type="button"><span class="launcher-copy"><strong>새 내용 이어쓰기</strong><small>기존 기록은 유지하고 새 기록을 추가해.</small></span><span class="launcher-arrow">→</span><span class="rich-editor append-editor hidden" id="appendEditor" contenteditable="false"></span></button><div class="append-foot"><span>추가 날짜와 시간은 자동 기록돼.</span><button class="classic primary" id="appendBtn">기록 추가</button></div></div>
 </article></section></div></section>
 <section class="view" data-panel="graph">
 <div class="toolbar graph-toolbar"><div><h1>생각 연결</h1><p>실제 메모에 있는 단어와 직접 연결만 사용해 관계를 보여줘.</p></div><div class="graph-tools"><span class="graph-stats" id="graphStats">연결 계산 중</span><label class="graph-search"><span>⌕</span><input id="graphSearch" type="search" placeholder="그래프 메모 찾기"></label><select class="classic" id="graphMode"><option value="recent">최근 메모</option><option value="connected">연결 많은 메모</option><option value="all">전체에서 선택</option></select><select class="classic" id="graphLimit"><option value="40">40개</option><option value="70" selected>70개</option><option value="120">120개</option></select><select class="classic" id="graphStrength"><option value="loose">연결 넓게</option><option value="normal" selected>연결 보통</option><option value="strong">연결 강하게</option></select><button class="classic" id="graphLinkModeBtn">직접 연결</button><button class="classic" id="resetGraph">가운데</button></div></div>
@@ -51,13 +50,13 @@
       <button class="format-btn" type="button" data-cmd="underline" title="밑줄"><u>U</u></button>
       <button class="format-btn" type="button" data-cmd="strikeThrough" title="취소선"><s>S</s></button>
       <span class="toolbar-separator"></span>
-      <button class="format-btn" type="button" data-cmd="insertUnorderedList" title="글머리 목록">• 목록</button>
-      <button class="format-btn" type="button" data-cmd="insertOrderedList" title="번호 목록">1. 목록</button>
-      <button class="format-btn" type="button" data-action="task" title="체크 항목">☐ 할 일</button>
-      <button class="format-btn" type="button" data-action="link" title="링크">🔗 링크</button>
+      <button class="format-btn" type="button" data-cmd="insertUnorderedList" title="글머리 목록">•</button>
+      <button class="format-btn" type="button" data-cmd="insertOrderedList" title="번호 목록">1.</button>
+      <button class="format-btn" type="button" data-action="task" title="체크 항목">☐</button>
+      <button class="format-btn" type="button" data-action="link" title="링크">↗</button>
       <span class="toolbar-separator"></span>
       <select class="size-select" data-size title="글자 크기"><option value="2">작게</option><option value="3" selected>보통</option><option value="5">크게</option></select>
-      <button class="format-btn" type="button" data-cmd="removeFormat" title="서식 지우기">서식×</button>
+      <button class="format-btn" type="button" data-cmd="removeFormat" title="서식 지우기">Tx</button>
     </div>
     <div id="newNoteEditor" class="note-window-editor" contenteditable="true" data-placeholder="여기에 편하게 메모해..."></div>
     <div class="note-window-meta"><span><span class="editor-shortcuts">Ctrl/Cmd+Enter 저장 · Ctrl/Cmd+B 굵게</span> · <b class="editor-count" id="newEditorCount">0자</b></span><span><b class="draft-state" id="draftStatusNew">임시 저장 대기</b> <button class="classic draft-clear" id="clearNewDraft" type="button">임시글 삭제</button></span></div>
@@ -76,13 +75,13 @@
       <button class="format-btn" type="button" data-cmd="underline" title="밑줄"><u>U</u></button>
       <button class="format-btn" type="button" data-cmd="strikeThrough" title="취소선"><s>S</s></button>
       <span class="toolbar-separator"></span>
-      <button class="format-btn" type="button" data-cmd="insertUnorderedList" title="글머리 목록">• 목록</button>
-      <button class="format-btn" type="button" data-cmd="insertOrderedList" title="번호 목록">1. 목록</button>
-      <button class="format-btn" type="button" data-action="task" title="체크 항목">☐ 할 일</button>
-      <button class="format-btn" type="button" data-action="link" title="링크">🔗 링크</button>
+      <button class="format-btn" type="button" data-cmd="insertUnorderedList" title="글머리 목록">•</button>
+      <button class="format-btn" type="button" data-cmd="insertOrderedList" title="번호 목록">1.</button>
+      <button class="format-btn" type="button" data-action="task" title="체크 항목">☐</button>
+      <button class="format-btn" type="button" data-action="link" title="링크">↗</button>
       <span class="toolbar-separator"></span>
       <select class="size-select" data-size title="글자 크기"><option value="2">작게</option><option value="3" selected>보통</option><option value="5">크게</option></select>
-      <button class="format-btn" type="button" data-cmd="removeFormat" title="서식 지우기">서식×</button>
+      <button class="format-btn" type="button" data-cmd="removeFormat" title="서식 지우기">Tx</button>
     </div>
     <div id="appendNoteEditor" class="note-window-editor" contenteditable="true" data-placeholder="기존 메모 아래에 이어서 기록해..."></div>
     <div class="note-window-meta"><span>기존 내용은 유지 · <b class="editor-count" id="appendEditorCount">0자</b></span><span><b class="draft-state" id="draftStatusAppend">임시 저장 대기</b> <button class="classic draft-clear" id="clearAppendDraft" type="button">임시글 삭제</button></span></div>
@@ -122,14 +121,14 @@
       <button class="format-btn" type="button" data-cmd="underline" title="밑줄"><u>U</u></button>
       <button class="format-btn" type="button" data-cmd="strikeThrough" title="취소선"><s>S</s></button>
       <span class="toolbar-separator"></span>
-      <button class="format-btn" type="button" data-cmd="insertUnorderedList" title="글머리 목록">• 목록</button>
-      <button class="format-btn" type="button" data-cmd="insertOrderedList" title="번호 목록">1. 목록</button>
-      <button class="format-btn" type="button" data-action="task" title="체크 항목">☐ 할 일</button>
-      <button class="format-btn" type="button" data-action="link" title="링크">🔗 링크</button>
+      <button class="format-btn" type="button" data-cmd="insertUnorderedList" title="글머리 목록">•</button>
+      <button class="format-btn" type="button" data-cmd="insertOrderedList" title="번호 목록">1.</button>
+      <button class="format-btn" type="button" data-action="task" title="체크 항목">☐</button>
+      <button class="format-btn" type="button" data-action="link" title="링크">↗</button>
       <span class="toolbar-separator"></span>
       <select class="size-select" data-size title="글자 크기"><option value="2">작게</option><option value="3" selected>보통</option><option value="5">크게</option></select>
-      <button class="format-btn" type="button" data-cmd="removeFormat" title="서식 지우기">서식×</button>
+      <button class="format-btn" type="button" data-cmd="removeFormat" title="서식 지우기">Tx</button>
     </div><div class="note-window-editor" id="editEditor" contenteditable="true"></div><div class="note-window-meta"><span>수정 전 내용은 이력에 남아 · <b class="editor-count" id="editEditorCount">0자</b></span><span><b class="draft-state" id="draftStatusEdit">임시 저장 대기</b> <button class="classic draft-clear" id="clearEditDraft" type="button">임시글 삭제</button></span></div></div><div class="dlg-buttons"><button class="classic" value="cancel">취소</button><button class="classic primary" id="saveEdit" value="default">수정 저장</button></div></form></dialog>
 <dialog id="historyDialog"><form method="dialog"><div class="dlg-title"><strong>수정 이력</strong><button value="cancel">×</button></div><div class="dlg-body"><div class="history-list" id="historyList"></div></div><div class="dlg-buttons"><button class="classic" value="cancel">닫기</button></div></form></dialog><div class="toast hidden" id="toast"><span id="toastText"></span><button class="toast-action hidden" id="toastAction" type="button"></button></div>
-<script src="app.js" defer></script>
+<script src="app-v093.js" defer></script>
 </body></html>

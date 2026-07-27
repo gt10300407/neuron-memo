@@ -9,18 +9,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 HTML_PATH = ROOT / "index.html"
-VERSION_HTML_PATH = ROOT / "v090.html"
-JS_PATH = ROOT / "app.js"
-CSS_PATH = ROOT / "app.css"
-MANIFEST_PATH = ROOT / "manifest.webmanifest"
-SW_PATH = ROOT / "sw.js"
+VERSION_HTML_PATH = ROOT / "v093.html"
+JS_PATH = ROOT / "app-v093.js"
+CSS_PATH = ROOT / "app-v093.css"
 
 html = HTML_PATH.read_text(encoding="utf-8")
 version_html = VERSION_HTML_PATH.read_text(encoding="utf-8")
 js = JS_PATH.read_text(encoding="utf-8")
 css = CSS_PATH.read_text(encoding="utf-8")
-sw = SW_PATH.read_text(encoding="utf-8")
-manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
 
 
 class AuditParser(HTMLParser):
@@ -62,7 +58,7 @@ parser.feed(html)
 
 assert '<html lang="ko">' in html
 assert '<meta name="viewport"' in html
-assert '<title>수령길-컴맹 v0.9.0</title>' in html
+assert '<title>수령길-컴맹 v0.9.3</title>' in html
 assert html == version_html, "index.html과 v090.html이 서로 다릅니다."
 assert not parser.event_attributes, f"인라인 이벤트 속성 발견: {parser.event_attributes}"
 duplicates = [item for item, count in Counter(parser.ids).items() if count > 1]
@@ -70,7 +66,7 @@ assert not duplicates, f"중복 ID 발견: {duplicates}"
 assert parser.tags["object"] == 0
 assert parser.tags["iframe"] == 0
 assert parser.tags["script"] == 1
-assert parser.scripts[0].get("src") == "app.js"
+assert parser.scripts[0].get("src") == "app-v093.js"
 assert not parser.inline_script_chunks, "인라인 JavaScript가 포함되어 있습니다."
 
 search = parser.inputs.get("searchInput")
@@ -112,15 +108,11 @@ assert "inverted=new Map()" in js
 assert '["http:","https:","mailto:"]' in js
 assert "noopener noreferrer" in js
 
-assert manifest["display"] == "standalone"
-assert manifest["start_url"] == "./index.html"
-assert len(manifest.get("icons", [])) >= 2
-for icon in manifest["icons"]:
-    assert (ROOT / icon["src"]).is_file(), f"아이콘 없음: {icon['src']}"
-for required in ("./index.html", "./v090.html", "./app.css", "./app.js", "./manifest.webmanifest"):
-    assert required in sw, f"서비스워커 캐시 대상 누락: {required}"
+assert "serviceWorker.register" not in js
+assert not (ROOT / "sw.js").exists()
+assert not (ROOT / "manifest.webmanifest").exists()
 
-for relative in ("app.css", "app.js", "manifest.webmanifest", "sw.js", "icons/icon-192.png", "icons/icon-512.png"):
+for relative in ("app-v093.css", "app-v093.js", "icons/icon-192.png", "icons/icon-512.png"):
     assert (ROOT / relative).is_file(), f"파일 누락: {relative}"
 
 referenced = set(re.findall(r'\$\(["\']#([A-Za-z][\w:-]*)["\']\)', js))
@@ -128,7 +120,7 @@ dynamic_ids = {"edgeClear", "graphManageLinks", "graphOpenNote"}
 missing_ids = sorted(referenced - set(parser.ids) - dynamic_ids)
 assert not missing_ids, f"HTML에 없는 ID 참조: {missing_ids}"
 
-old_pages = [path.name for path in ROOT.glob("v*.html") if path.name != "v090.html"]
+old_pages = [path.name for path in ROOT.glob("v*.html") if path.name != "v093.html"]
 assert not old_pages, f"구형 버전 페이지가 남아 있습니다: {old_pages}"
 
 assert JS_PATH.stat().st_size < 350_000
