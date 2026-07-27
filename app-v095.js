@@ -450,27 +450,18 @@ let pinch=null;
 let suppressGraphClickUntil=0;
 
 function clampGraphTransform(){
-  const marginX=90,marginY=70;
-  const scaledW=(graphBounds.maxX-graphBounds.minX)*gt.s;
-  const scaledH=(graphBounds.maxY-graphBounds.minY)*gt.s;
+  // 확대/이동 중에는 자동 가운데 정렬을 절대 하지 않는다.
+  // 그래프가 화면에서 완전히 사라지는 것만 막는다.
+  const keepX=56,keepY=46;
+  const left=gt.x+graphBounds.minX*gt.s;
+  const right=gt.x+graphBounds.maxX*gt.s;
+  const top=gt.y+graphBounds.minY*gt.s;
+  const bottom=gt.y+graphBounds.maxY*gt.s;
 
-  if(scaledW<1000-marginX*2){
-    const center=(graphBounds.minX+graphBounds.maxX)/2;
-    gt.x=500-center*gt.s;
-  }else{
-    const minX=marginX-graphBounds.maxX*gt.s;
-    const maxX=1000-marginX-graphBounds.minX*gt.s;
-    gt.x=Math.max(minX,Math.min(maxX,gt.x));
-  }
-
-  if(scaledH<700-marginY*2){
-    const center=(graphBounds.minY+graphBounds.maxY)/2;
-    gt.y=350-center*gt.s;
-  }else{
-    const minY=marginY-graphBounds.maxY*gt.s;
-    const maxY=700-marginY-graphBounds.minY*gt.s;
-    gt.y=Math.max(minY,Math.min(maxY,gt.y));
-  }
+  if(left>1000-keepX)gt.x-=left-(1000-keepX);
+  if(right<keepX)gt.x+=keepX-right;
+  if(top>700-keepY)gt.y-=top-(700-keepY);
+  if(bottom<keepY)gt.y+=keepY-bottom;
 }
 function applyGraph(){
   clampGraphTransform();
@@ -788,6 +779,8 @@ e.graph.addEventListener('pointerdown',event=>{
     pinch={
       startDist:distance,
       startScale:gt.s,
+      anchorX:middle.x,
+      anchorY:middle.y,
       worldX:(middle.x-gt.x)/gt.s,
       worldY:(middle.y-gt.y)/gt.s
     };
@@ -822,11 +815,12 @@ e.graph.addEventListener('pointermove',event=>{
     const first=clientToGraphPoint(points[0].x,points[0].y);
     const second=clientToGraphPoint(points[1].x,points[1].y);
     const currentDistance=Math.max(8,Math.hypot(points[1].x-points[0].x,points[1].y-points[0].y));
-    const middle={x:(first.x+second.x)/2,y:(first.y+second.y)/2};
     const scale=Math.max(.45,Math.min(2.8,pinch.startScale*(currentDistance/pinch.startDist)));
     gt.s=scale;
-    gt.x=middle.x-pinch.worldX*scale;
-    gt.y=middle.y-pinch.worldY*scale;
+    // 두 손가락 확대 중에는 시작 midpoint를 고정한다.
+    // 손가락의 미세한 좌우/상하 흔들림이 그래프 이동으로 번지지 않는다.
+    gt.x=pinch.anchorX-pinch.worldX*scale;
+    gt.y=pinch.anchorY-pinch.worldY*scale;
     applyGraph();
     suppressGraphClickUntil=Date.now()+350;
     return;

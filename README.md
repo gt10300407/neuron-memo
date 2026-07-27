@@ -1,13 +1,23 @@
-# 수령길-컴맹 v0.9.4 — Mobile Rebuild
+# 수령길-컴맹 v0.9.5 — Pinch Anchor Fix
 
-모바일 화면을 다시 한 번 완전히 분리한 안정화 버전.
+## 수정
+모바일 생각 연결에서 두 손가락으로 확대할 때 그래프 위치가 확대량에 따라 같이 밀리던 문제 수정.
 
-- 모바일에서 로컬 저장 상태·데스크톱 메뉴 숨김
-- 메모 목록 검색 영역 2행 고정
-- 상세 화면은 검색 영역을 완전히 숨김
-- 생각 연결 컨트롤 2열 고정, 그래프는 남는 높이 전체 사용
-- 편집창 전체화면화 및 툴바 가로 스크롤
-- PWA/Service Worker는 모바일 안정화 완료 전까지 제거
+원인은 두 가지였다.
 
-배포 후 반드시 새 주소로 확인:
-`https://<GitHub아이디>.github.io/neuron-memo/v094.html`
+1. 확대할 때마다 작은 그래프를 자동으로 다시 가운데 정렬하던 clamp 로직
+2. 핀치 중 두 손가락 midpoint의 미세한 움직임까지 pan으로 처리하던 로직
+
+이제 조작 규칙은 명확하다.
+
+- 한 손가락: 그래프 이동
+- 두 손가락: **처음 잡은 위치를 고정한 채 확대/축소만**
+- `가운데`: 사용자가 직접 눌렀을 때만 가운데 맞춤
+
+## 배포
+```bash
+cd ~/Downloads && rm -rf SURYUNGGIL_COMMAENG && unzip -qo NEURON_MEMO_LATEST.zip && cd SURYUNGGIL_COMMAENG && bash publish.sh
+```
+
+확인:
+`https://<GitHub아이디>.github.io/neuron-memo/v095.html`

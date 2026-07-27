@@ -2004,3 +2004,14 @@ button{white-space:nowrap}
     height:100%!important;
   }
 }
+
+
+/* v0.9.5 pinch behavior */
+@media (max-width:760px){
+  [data-panel="graph"] .graph-box,
+  [data-panel="graph"] .graph-canvas,
+  [data-panel="graph"] #graph{
+    touch-action:none!important;
+    overscroll-behavior:none!important;
+  }
+}
