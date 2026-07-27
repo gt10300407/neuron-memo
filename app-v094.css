@@ -1957,3 +1957,50 @@ button{white-space:nowrap}
 
   dialog:not(.note-window)[open]{inset:50% 7px auto 7px!important;width:auto!important;max-width:none!important;transform:translateY(-50%)!important}
 }
+
+
+/* =========================================================
+   v0.9.4 GRAPH WIDTH FIX
+   Root cause: desktop two-column graph grid survived on mobile.
+   ========================================================= */
+@media (max-width:760px){
+  [data-panel="graph"] .graph-layout{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    grid-template-rows:minmax(0,1fr) auto!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    height:auto!important;
+    min-height:0!important;
+    overflow:hidden!important;
+  }
+  [data-panel="graph"] .graph-box{
+    grid-column:1!important;
+    grid-row:1!important;
+    justify-self:stretch!important;
+    align-self:stretch!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    height:100%!important;
+    margin:0!important;
+  }
+  [data-panel="graph"] .graph-inspector{
+    grid-column:1!important;
+    grid-row:2!important;
+    justify-self:stretch!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    margin:5px 0 0!important;
+  }
+  [data-panel="graph"] .graph-canvas,
+  [data-panel="graph"] #graph{
+    display:block!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    height:100%!important;
+  }
+}

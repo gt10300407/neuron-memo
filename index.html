@@ -8,13 +8,13 @@
 <meta name="theme-color" content="#245b78">
 <meta name="color-scheme" content="light">
 <link rel="icon" href="icons/icon-192.png">
-<title>수령길-컴맹 v0.9.3</title>
-<link rel="stylesheet" href="app-v093.css">
+<title>수령길-컴맹 v0.9.4</title>
+<link rel="stylesheet" href="app-v094.css">
 </head>
 <body>
 <div class="desktop"><main class="win">
 <header class="titlebar"><div class="title-left"><span class="app-icon">▤</span><span>수령길-컴맹</span></div><div class="title-right"><button class="title-save" id="backupTop" type="button" title="백업·복구 열기"><span class="save-dot">●</span><span>로컬 저장</span></button></div></header>
-<div class="menu"><button id="menuFile">파일</button><button id="menuView">보기</button><button id="menuHelp">도움말</button><span class="build">v0.9.3 · MOBILE REBUILD</span></div>
+<div class="menu"><button id="menuFile">파일</button><button id="menuView">보기</button><button id="menuHelp">도움말</button><span class="build">v0.9.4 · GRAPH WIDTH FIX</span></div>
 <div class="layout">
 <aside class="sidebar"><nav class="nav"><button class="active" data-view="notes"><span class="ico">▤</span><span>메모</span></button><button data-view="graph"><span class="ico">⌘</span><span>생각 연결</span></button><button data-view="review"><span class="ico">◷</span><span>다시보기</span></button></nav><div class="side-actions"><button class="classic" id="trashBtn">휴지통 <span class="trash-badge" id="trashCountSide">0</span></button><button class="classic" id="backupBtn">백업·복구</button><input class="hidden" id="importFile" type="file" accept=".json,application/json"></div></aside>
 <section class="workspace">
@@ -130,5 +130,5 @@
       <button class="format-btn" type="button" data-cmd="removeFormat" title="서식 지우기">Tx</button>
     </div><div class="note-window-editor" id="editEditor" contenteditable="true"></div><div class="note-window-meta"><span>수정 전 내용은 이력에 남아 · <b class="editor-count" id="editEditorCount">0자</b></span><span><b class="draft-state" id="draftStatusEdit">임시 저장 대기</b> <button class="classic draft-clear" id="clearEditDraft" type="button">임시글 삭제</button></span></div></div><div class="dlg-buttons"><button class="classic" value="cancel">취소</button><button class="classic primary" id="saveEdit" value="default">수정 저장</button></div></form></dialog>
 <dialog id="historyDialog"><form method="dialog"><div class="dlg-title"><strong>수정 이력</strong><button value="cancel">×</button></div><div class="dlg-body"><div class="history-list" id="historyList"></div></div><div class="dlg-buttons"><button class="classic" value="cancel">닫기</button></div></form></dialog><div class="toast hidden" id="toast"><span id="toastText"></span><button class="toast-action hidden" id="toastAction" type="button"></button></div>
-<script src="app-v093.js" defer></script>
+<script src="app-v094.js" defer></script>
 </body></html>

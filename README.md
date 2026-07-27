@@ -1,4 +1,4 @@
-# 수령길-컴맹 v0.9.3 — Mobile Rebuild
+# 수령길-컴맹 v0.9.4 — Mobile Rebuild
 
 모바일 화면을 다시 한 번 완전히 분리한 안정화 버전.
 
@@ -10,4 +10,4 @@
 - PWA/Service Worker는 모바일 안정화 완료 전까지 제거
 
 배포 후 반드시 새 주소로 확인:
-`https://<GitHub아이디>.github.io/neuron-memo/v093.html`
+`https://<GitHub아이디>.github.io/neuron-memo/v094.html`

@@ -9,9 +9,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 HTML_PATH = ROOT / "index.html"
-VERSION_HTML_PATH = ROOT / "v093.html"
-JS_PATH = ROOT / "app-v093.js"
-CSS_PATH = ROOT / "app-v093.css"
+VERSION_HTML_PATH = ROOT / "v094.html"
+JS_PATH = ROOT / "app-v094.js"
+CSS_PATH = ROOT / "app-v094.css"
 
 html = HTML_PATH.read_text(encoding="utf-8")
 version_html = VERSION_HTML_PATH.read_text(encoding="utf-8")
@@ -58,7 +58,7 @@ parser.feed(html)
 
 assert '<html lang="ko">' in html
 assert '<meta name="viewport"' in html
-assert '<title>수령길-컴맹 v0.9.3</title>' in html
+assert '<title>수령길-컴맹 v0.9.4</title>' in html
 assert html == version_html, "index.html과 v090.html이 서로 다릅니다."
 assert not parser.event_attributes, f"인라인 이벤트 속성 발견: {parser.event_attributes}"
 duplicates = [item for item, count in Counter(parser.ids).items() if count > 1]
@@ -66,7 +66,7 @@ assert not duplicates, f"중복 ID 발견: {duplicates}"
 assert parser.tags["object"] == 0
 assert parser.tags["iframe"] == 0
 assert parser.tags["script"] == 1
-assert parser.scripts[0].get("src") == "app-v093.js"
+assert parser.scripts[0].get("src") == "app-v094.js"
 assert not parser.inline_script_chunks, "인라인 JavaScript가 포함되어 있습니다."
 
 search = parser.inputs.get("searchInput")
@@ -112,7 +112,7 @@ assert "serviceWorker.register" not in js
 assert not (ROOT / "sw.js").exists()
 assert not (ROOT / "manifest.webmanifest").exists()
 
-for relative in ("app-v093.css", "app-v093.js", "icons/icon-192.png", "icons/icon-512.png"):
+for relative in ("app-v094.css", "app-v094.js", "icons/icon-192.png", "icons/icon-512.png"):
     assert (ROOT / relative).is_file(), f"파일 누락: {relative}"
 
 referenced = set(re.findall(r'\$\(["\']#([A-Za-z][\w:-]*)["\']\)', js))
@@ -120,7 +120,7 @@ dynamic_ids = {"edgeClear", "graphManageLinks", "graphOpenNote"}
 missing_ids = sorted(referenced - set(parser.ids) - dynamic_ids)
 assert not missing_ids, f"HTML에 없는 ID 참조: {missing_ids}"
 
-old_pages = [path.name for path in ROOT.glob("v*.html") if path.name != "v093.html"]
+old_pages = [path.name for path in ROOT.glob("v*.html") if path.name != "v094.html"]
 assert not old_pages, f"구형 버전 페이지가 남아 있습니다: {old_pages}"
 
 assert JS_PATH.stat().st_size < 350_000
@@ -130,3 +130,8 @@ print(
     "static audit PASS | "
     f"ids={len(parser.ids)} js={JS_PATH.stat().st_size}B css={CSS_PATH.stat().st_size}B"
 )
+
+# v0.9.4 mobile graph regression
+assert "grid-template-columns:minmax(0,1fr)!important" in css
+assert "[data-panel=\"graph\"] .graph-box" in css
+assert "grid-column:1!important" in css
